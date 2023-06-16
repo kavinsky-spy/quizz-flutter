@@ -10,7 +10,7 @@ class Quizzler extends StatelessWidget {
         backgroundColor: Colors.grey.shade900,
         body: SafeArea(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10.0),
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: QuizPage(),
           ),
         ),
@@ -31,7 +31,7 @@ class _QuizPageState extends State<QuizPage> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
-        Expanded(
+        const Expanded(
           flex: 5,
           child: Padding(
             padding: EdgeInsets.all(10.0),
@@ -51,9 +51,9 @@ class _QuizPageState extends State<QuizPage> {
           child: Padding(
             padding: EdgeInsets.all(15.0),
             child: TextButton(
-              textColor: Colors.white,
-              color: Colors.green,
-              child: Text(
+              style: const ButtonStyle(
+                  backgroundColor: MaterialStatePropertyAll(Colors.green)),
+              child: const Text(
                 'True',
                 style: TextStyle(
                   color: Colors.white,
@@ -70,9 +70,9 @@ class _QuizPageState extends State<QuizPage> {
           child: Padding(
             padding: EdgeInsets.all(15.0),
             child: TextButton(
-              style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.red)),
-              child: Text(
+              style: const ButtonStyle(
+                  backgroundColor: MaterialStatePropertyAll(Colors.red)),
+              child: const Text(
                 'False',
                 style: TextStyle(
                   fontSize: 20.0,
