@@ -30,21 +30,17 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> {
   List<Widget> scoreKeeper = [];
 
-  int questionNumber = 0;
-
   void nextQuestion(bool answer) {
-    bool correctAnswer = quizBrain.questionsList[questionNumber].questionAnswer;
+    bool correctAnswer = quizBrain.getQuestionAnswer();
 
     if (correctAnswer == answer) {
       setState(() {
-        questionNumber++;
+        quizBrain.nextQuestion();
       });
       return;
-    } else {}
-    setState(() {
-      questionNumber++;
-    });
-    return;
+    } else {
+      return;
+    }
   }
 
   @override
@@ -59,7 +55,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: const EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                quizBrain.questionsList[questionNumber].questionText,
+                quizBrain.getQuestionText(),
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontSize: 25.0,
