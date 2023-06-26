@@ -30,17 +30,24 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> {
   List<Widget> scoreKeeper = [];
 
-  void nextQuestion(bool answer) {
+  void checkAnswer(bool userPickedAnswer) {
     bool correctAnswer = quizBrain.getQuestionAnswer();
 
-    if (correctAnswer == answer) {
-      setState(() {
-        quizBrain.nextQuestion();
-      });
-      return;
-    } else {
-      return;
-    }
+    setState(() {
+      if (correctAnswer == userPickedAnswer) {
+        scoreKeeper.add(const Icon(
+          Icons.check,
+          color: Colors.green,
+        ));
+      } else {
+        scoreKeeper.add(const Icon(
+          Icons.close,
+          color: Colors.red,
+        ));
+      }
+
+      quizBrain.nextQuestion();
+    });
   }
 
   @override
@@ -67,7 +74,7 @@ class _QuizPageState extends State<QuizPage> {
         ),
         Expanded(
           child: Padding(
-            padding: EdgeInsets.all(15.0),
+            padding: const EdgeInsets.all(15.0),
             child: TextButton(
               style: const ButtonStyle(
                   backgroundColor: MaterialStatePropertyAll(Colors.green)),
@@ -79,7 +86,7 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                nextQuestion(true);
+                checkAnswer(true);
                 //The user picked true.
               },
             ),
@@ -87,7 +94,7 @@ class _QuizPageState extends State<QuizPage> {
         ),
         Expanded(
           child: Padding(
-            padding: EdgeInsets.all(15.0),
+            padding: const EdgeInsets.all(15.0),
             child: TextButton(
               style: const ButtonStyle(
                   backgroundColor: MaterialStatePropertyAll(Colors.red)),
@@ -99,7 +106,7 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                nextQuestion(false);
+                checkAnswer(false);
                 //The user picked false.
               },
             ),
